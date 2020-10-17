@@ -13,6 +13,11 @@ function RecipeCard({ recipe }) {
                })}
             </div>
          </div>
+         <div className="show">
+            <div className="ing">
+               show ingredients
+            </div>
+         </div>
       </div>
    )
 }

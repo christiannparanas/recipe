@@ -9,25 +9,35 @@ import Loader from "../components/Loader";
 export default function Home() {
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState("adobo");
+  const [searchTemp, setSearchTemp] = useState("adobo");
+
+  const fetchData = async () => {
+    const result = await axios.get("https://api.edamam.com/search", {
+      params: {
+        q: `${search}`,
+        app_id: "2381de63",
+        app_key: "4a9cc5a4fe8d6ae0a61a2b3857997b96",
+        form: 0,
+        to: 20,
+      },
+    });
+    setRecipes(result.data.hits);
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios.get("https://api.edamam.com/search", {
-        params: {
-          q: `${search}`,
-          app_id: "2381de63",
-          app_key: "4a9cc5a4fe8d6ae0a61a2b3857997b96",
-          form: 0,
-          to: 5,
-        },
-      });
-      setRecipes(result.data.hits);
-    };
 
     fetchData();
-    if (search === null) {
-      setSearch("adobo");
-    }
-  }, [search]);
+  }, []);
+
+  const searchBar = (e) => {
+    e.preventDefault();
+    if(!search) return;
+
+    fetchData()
+    setSearchTemp(search)
+  }
+
+  console.log(recipes)
 
   return (
     <div className="main">
@@ -42,23 +52,27 @@ export default function Home() {
       <div className="nav">
         <div className="logo">Recipe</div>
         <div className="search">
-          <input
-            type="text"
-            placeholder="Find a Recipe"
-            onChange={(e) => setSearch(e.target.value)}
-            
-          />
+          <form onSubmit={searchBar}>
+            <input
+              type="text"
+              placeholder="Find a Recipe"
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </form>
           <div className="fav">
             <FcLike />
           </div>
         </div>
       </div>
       <Loader />
-      <div className="disc"><div className="dis">Most Popular {search}  recipes!</div></div>
+      <div className="disc">
+        <div className="dis">Most Popular {searchTemp} recipes!</div>
+      </div>
       <div className="items">
         {recipes.map((recipe) => {
+          let index = 1
           return (
-            <RecipeCard key={recipe.recipe.label} recipe={recipe.recipe} />
+            <RecipeCard recipe={recipe.recipe} />
           );
         })}
       </div>
