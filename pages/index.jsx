@@ -27,15 +27,7 @@ export default function Home() {
     if (search === null) {
       setSearch("adobo");
     }
-  }, []);
-
-
-  const handleKeypress = (e) => {
-    //it triggers by pressing the enter key
-    if (e.keyCode === 13) {
-      fetchData();
-    }
-  };
+  }, [search]);
 
   return (
     <div className="main">
@@ -54,7 +46,7 @@ export default function Home() {
             type="text"
             placeholder="Find a Recipe"
             onChange={(e) => setSearch(e.target.value)}
-            onKeyPress={handleKeypress}
+            
           />
           <div className="fav">
             <FcLike />
