@@ -1,7 +1,9 @@
 import { FcLike } from "react-icons/fc";
 import { RiSearchLine } from "react-icons/ri";
+import axios from 'axios'
 
 function Nav() {
+
   return (
     <div className="nav">
       <div className="logo">Recipe</div>

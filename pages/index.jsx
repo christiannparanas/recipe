@@ -1,19 +1,49 @@
 import Head from "next/head";
 // import { Button } from '@material-ui/core';
-import Nav from '../components/Nav'
+import Nav from "../components/Nav";
+import { useState, useEffect } from 'react'
+import axios from 'axios'
+
+import RecipeCard from '../components/RecipeCard'
 
 export default function Home() {
+  const [ recipes, setRecipes ] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios.get("https://api.edamam.com/search",{
+        params:{
+            q: "adobo",
+            app_id:"2381de63",
+            app_key:"4a9cc5a4fe8d6ae0a61a2b3857997b96",
+            form:0,
+            to:10,
+        }
+      })
+      setRecipes(result.data.hits)
+    }
+
+    fetchData();
+  }, [])
+
+  console.log(recipes)
+
+
   return (
     <div className="main">
       <Head>
         <title>Recipe</title>
-        <meta
-          name="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width"
-        />
+        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
 
-      <Nav />       
+      <Nav />
+      <div className="items">
+        {recipes.map((recipe) => {
+          return (
+            <RecipeCard recipe={recipe.recipe} />
+          )
+        })}
+      </div>
     </div>
   );
 }
