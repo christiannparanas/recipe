@@ -40,7 +40,7 @@ export default function Home() {
       <div className="items">
         {recipes.map((recipe) => {
           return (
-            <RecipeCard recipe={recipe.recipe} />
+            <RecipeCard key={recipe.recipe.label} recipe={recipe.recipe} />
           )
         })}
       </div>

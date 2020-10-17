@@ -32,15 +32,39 @@
 
 .items {
   display: grid;
-  grid-template-columns: 1fr 1fr;
   padding: 20px;
-  grid-column-gap: 20px;
-  grid-row-gap: 20px;
+  grid-row-gap: 50px;
 
   .recipecard {
 
     img {
       width: 100%;
+    }
+
+    .infos {
+
+      .label {
+        padding: 10px;
+        font-size: 15px;
+      }
+
+      .healthLabels {
+        padding: 5px 10px;
+        overflow-x: scroll;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        text-align: center;
+        grid-column-gap: 5px;
+
+        .hlabel {
+          color: white;
+          font-size: 10px;
+          padding: 5px;
+          border-radius: 10px;
+          background-color: pink;
+          margin-bottom: 5px;
+        }
+      }
     }
   }
 }
