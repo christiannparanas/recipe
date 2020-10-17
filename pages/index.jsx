@@ -1,9 +1,25 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
+// import { Button } from '@material-ui/core';
+import Nav from '../components/Nav'
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <div className="main">
+      <Head>
+        <title>Recipe</title>
+        <meta
+          name="viewport"
+          content="minimum-scale=1, initial-scale=1, width=device-width"
+        />
+      </Head>
+
+      <Nav />       
+    </div>
+  );
+}
+
+{
+  /* <div className={styles.container}>
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
@@ -60,6 +76,5 @@ export default function Home() {
           <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
         </a>
       </footer>
-    </div>
-  )
+    </div> */
 }
