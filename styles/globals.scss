@@ -73,10 +73,25 @@
   }
 }
 
+.disc {
+  text-align: center;
+  display: grid;
+  place-items: center;
+  margin: 90px 10px 10px;
+
+  .dis {
+    width: fit-content;
+    padding: 5px 10px;
+    border-radius: 6px;
+    color: white;
+    background-color: pink;
+  }
+}
+
 .items {
 
   display: grid;
-  padding: 105px 20px 30px;
+  padding: 10px 20px 30px;
   grid-row-gap: 50px;
 
   .recipecard {
