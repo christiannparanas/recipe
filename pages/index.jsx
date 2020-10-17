@@ -28,9 +28,13 @@ export default function Home() {
 
   console.log(recipes)
 
+  function hi() {
+    console.log('hi')
+  }
+
 
   return (
-    <div className="main">
+    <div onScroll={hi()} className="main">
       <Head>
         <title>Recipe</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
