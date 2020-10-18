@@ -22,9 +22,6 @@ function RecipeCard({ recipe }) {
           );
         })}
       </div>
-      <div className="show">
-        <div className="ing">Hide ingredients</div>
-      </div>
     </div>
   );
 }
