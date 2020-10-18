@@ -24,19 +24,16 @@ export default function Home() {
   };
 
   useEffect(() => {
-
     fetchData();
   }, []);
 
   const searchBar = (e) => {
     e.preventDefault();
-    if(!search) return;
+    if (!search) return;
 
-    fetchData()
-    setSearchTemp(search)
-  }
-
-  console.log(recipes)
+    fetchData();
+    setSearchTemp(search);
+  };
 
   return (
     <div className="main">
@@ -50,13 +47,13 @@ export default function Home() {
 
       <div className="nav">
         <div className="logo">Recipe</div>
-          <form onSubmit={searchBar}>
-            <input
-              type="text"
-              placeholder="Find a Recipe"
-              onChange={(e) => setSearch(e.target.value)}
-            />
-          </form>
+        <form onSubmit={searchBar}>
+          <input
+            type="text"
+            placeholder="Find a Recipe"
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </form>
       </div>
       <Loader />
       <div className="disc">
@@ -64,10 +61,8 @@ export default function Home() {
       </div>
       <div className="items">
         {recipes.map((recipe) => {
-          let index = 1
-          return (
-            <RecipeCard recipe={recipe.recipe} />
-          );
+          let index = 1;
+          return <RecipeCard recipe={recipe.recipe} />;
         })}
       </div>
     </div>
