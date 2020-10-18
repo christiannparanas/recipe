@@ -9,6 +9,7 @@ export default function Home() {
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState("adobo");
   const [searchTemp, setSearchTemp] = useState("adobo");
+  const [load, setLoad] = useState(true)
 
   const fetchData = async () => {
     const result = await axios.get("https://api.edamam.com/search", {
@@ -25,15 +26,24 @@ export default function Home() {
 
   useEffect(() => {
     fetchData();
+
+    setTimeout(() => {
+      setLoad(false)
+    }, 4000)
   }, []);
 
   const searchBar = (e) => {
     e.preventDefault();
     if (!search) return;
 
+    setLoad(true)
     fetchData();
     setSearchTemp(search);
+    setTimeout(() => {
+      setLoad(false)
+    }, 4000)
   };
+  
 
   return (
     <div className="main">
@@ -55,10 +65,10 @@ export default function Home() {
           />
         </form>
       </div>
-      <Loader />
       <div className="disc">
         <div className="dis">Most Popular {searchTemp} recipes!</div>
       </div>
+      {load && <Loader />}
       <div className="items">
         {recipes.map((recipe) => {
           let index = 1;
