@@ -1,7 +1,6 @@
 import Head from "next/head";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { FcLike } from "react-icons/fc";
 
 import RecipeCard from "../components/RecipeCard";
 import Loader from "../components/Loader";
@@ -51,7 +50,6 @@ export default function Home() {
 
       <div className="nav">
         <div className="logo">Recipe</div>
-        <div className="search">
           <form onSubmit={searchBar}>
             <input
               type="text"
@@ -59,10 +57,6 @@ export default function Home() {
               onChange={(e) => setSearch(e.target.value)}
             />
           </form>
-          <div className="fav">
-            <FcLike />
-          </div>
-        </div>
       </div>
       <Loader />
       <div className="disc">
